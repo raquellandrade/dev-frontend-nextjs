@@ -1,12 +1,12 @@
 "use client"
-import Header from "./components/base/Header";
-import Footer from "./components/base/Footer";
-import { ProductsList } from "./components/products/ProductsList";
+import Header from "@/app/components/base/Header";
+import Footer from "@/app/components/base/Footer";
+import { ProductsList } from "@/app/components/products/ProductsList";
 import { getProducts } from "@/app/apis/products/products";
 import { useEffect, useState } from "react";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
-export default function Home() {
+export default function Produtos() {
   const [products, setProducts] = useState([]);
   const [productsList, setProductsList] = useState([]);
 
@@ -33,7 +33,7 @@ export default function Home() {
       <Header />
       <main className="mx-auto flex flex-col max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="w-full flex justify-between mb-5">
-        <h1 className="w-full lg:mb-4.5 scroll-m-20 text-left text-4xl font-extrabold tracking-tight text-balance">
+          <h1 className="w-full lg:mb-4.5 scroll-m-20 text-left text-4xl font-extrabold tracking-tight text-balance">
             Produtos
           </h1>
           <div className={`
