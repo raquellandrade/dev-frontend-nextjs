@@ -1,39 +1,16 @@
 "use client"
 import Header from "./components/base/Header";
 import Footer from "./components/base/Footer";
-import { ProductsList } from "./components/products/ProductsList";
-import { getProducts } from "@/app/apis/products/products";
-import { useEffect, useState } from "react";
+import ProductsListPage from "./components/products/ProductsListPage";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
+
 export default function Home() {
-  const [products, setProducts] = useState([]);
-  const [productsList, setProductsList] = useState([]);
-
-  async function getProductsList() {
-    try {
-      const response = await getProducts();
-      if(response.data) {
-        setProducts(response.data);
-        setProductsList(response.data);
-      }
-
-    } catch (error) {
-      console.error("Error", error);
-    }
-  }
-
-  useEffect(() => {
-    getProductsList();
-  }, []);
-
-
   return (
-    <div className="">
-      <Header />
+    <>
       <main className="mx-auto flex flex-col max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="w-full flex justify-between mb-5">
-        <h1 className="w-full lg:mb-4.5 scroll-m-20 text-left text-4xl font-extrabold tracking-tight text-balance">
+          <h1 className="w-full lg:mb-4.5 scroll-m-20 text-left text-4xl font-extrabold tracking-tight text-balance">
             Produtos
           </h1>
           <div className={`
@@ -47,10 +24,8 @@ export default function Home() {
               aria-hidden="true"/>
           </div>
         </div>
-        
-        <ProductsList products={products} />
+        <ProductsListPage />
       </main>
-      <Footer />
-    </div>
+    </>
   );
 }

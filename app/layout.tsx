@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "./components/base/Header";
+import Footer from "./components/base/Footer";
 
 export const metadata: Metadata = {
   title: "Athena App",
@@ -16,7 +18,9 @@ export default function RootLayout({
       <body
         className="antialiased"
       >
-        {children}
+        <Header />
+          {children}
+        <Footer />
       </body>
     </html>
   );

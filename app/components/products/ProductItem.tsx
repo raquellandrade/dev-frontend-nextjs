@@ -1,3 +1,4 @@
+"use client"
 import Product from "@/app/model/Product";
 import {
     TableCell,

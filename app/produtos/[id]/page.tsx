@@ -4,26 +4,22 @@ import { getProduct } from "@/app/apis/products/products";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Product from "@/app/model/Product";
-import Header from "@/app/components/base/Header";
-import Footer from "@/app/components/base/Footer";
 import { PlusCircleIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
+import useProcessando from "@/app/data/hooks/useProcessando";
 
 export default function ProductPage() {
-    //const router = useRouter()
-    const [product, setProduct] = 
-    useState<Product>({
+    const {processando, iniciarProcessamento, finalizarProcessamento} = useProcessando();
+    const initialProduct = {
         id: 0,
         title: '',
         price: 0,
         description: '',
         category: '',
         image: ''
-    });
-
+    }
+    const [product, setProduct] = useState<Product>(initialProduct);
     const params = useParams();
     const id: number = Number(params?.id);
-
-    console.log('params =---=', params.id);
 
     async function getProductData(id: number) {
         try {
@@ -39,14 +35,22 @@ export default function ProductPage() {
         
     }
 
+    async function loadProducts() {
+        try {
+            iniciarProcessamento()
+            await getProductData(id);
+        } finally {
+            finalizarProcessamento()
+        }
+      }
+
     useEffect(() => {
-        getProductData(id);
+        loadProducts();
     }, [id]);
 
     return (
-        <div>
-            <Header />
-                <main className="mx-auto flex flex-col max-w-7xl items-center justify-between p-6 lg:px-8">
+        <>
+            <main className="mx-auto flex flex-col max-w-7xl items-center justify-between p-6 lg:px-8">
                 <div className="w-full flex justify-between mb-5">
                     <h1 className="w-full lg:mb-4.5 scroll-m-20 text-left text-4xl font-extrabold tracking-tight text-balance">
                         Produtos
@@ -73,11 +77,16 @@ export default function ProductPage() {
                             aria-hidden="true"/>
                         </div>
                     </div>
-                    
                 </div>
-                    <ProductDetail product={product} />
-                </main>
-            <Footer />
-        </div>
+                {processando ? (
+                        <div>Carregando...</div>
+                        ) : product !== null ? (
+                            <ProductDetail product={product} />
+                        ) : (
+                            <div>Nenhum produto encontrado</div>
+                        ) 
+                    }
+            </main>
+        </>
     )
 }

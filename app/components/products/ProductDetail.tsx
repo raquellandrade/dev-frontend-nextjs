@@ -1,3 +1,4 @@
+"use client"
 import Product from "@/app/model/Product";
 import Moeda from "@/app/utils/moeda";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
@@ -7,7 +8,7 @@ interface ProductProps {
 }
 
 export default function ProductDetail(props: ProductProps) {
-    const { product } = props
+    const { product } = props;
     return (
         <div className="font-[sans-serif] bg-white">
       <div className="p-6 mx-auto">
