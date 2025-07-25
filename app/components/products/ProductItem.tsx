@@ -7,18 +7,17 @@ import {
 import Image from "next/image";
 import { EyeIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 import Moeda from "@/app/utils/moeda";
+import Link from 'next/link';
 
 interface ProductItemProps {
     produto: Product;
     selectProduct: (product: Product) => void;
     deleteProduct: (id: number) => void;
     handleOpenModal: (editButtonClicked: boolean) => void; 
-    isOpen: boolean;
-    loader: boolean; 
 }
 
 export default function ProductItem(props: ProductItemProps) {
-    const { produto, selectProduct, deleteProduct, handleOpenModal, isOpen, loader } = props;
+    const { produto, selectProduct, deleteProduct, handleOpenModal } = props;
     const editButtonClicked = true;
 
     return (
@@ -32,7 +31,7 @@ export default function ProductItem(props: ProductItemProps) {
           <TableCell>{produto.category}</TableCell>
           <TableCell>{Moeda.formatar(produto.price)}</TableCell>
           <TableCell className="text-right">
-            <a href={`/produtos/${produto.id}`}
+            <Link href={`/produtos/${produto.id}`}
                 className={`
                 inline-flex cursor-pointer items-center px-3 py-2 mr-2
                 text-sm font-medium text-center text-white bg-indigo-700 
@@ -43,7 +42,7 @@ export default function ProductItem(props: ProductItemProps) {
                     className="text-white font-bold h-4 w-4 ml-1"
                     aria-hidden="true"
                   />
-            </a>
+            </Link>
             <button 
               onClick={() => {
                 handleOpenModal(editButtonClicked);

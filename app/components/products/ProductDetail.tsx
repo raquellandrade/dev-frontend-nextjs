@@ -8,7 +8,6 @@ interface ProductProps {
 
 export default function ProductDetail(props: ProductProps) {
     const { product } = props;
-    const editButtonClicked = true;
 
     return (
         <div className="font-[sans-serif] bg-white">

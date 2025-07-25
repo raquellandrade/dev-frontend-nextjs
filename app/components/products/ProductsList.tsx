@@ -13,12 +13,10 @@ interface ProductsListProps {
   selectProduct: (product: Product) => void;
   deleteProduct: (id: number) => void;
   handleOpenModal: (editButtonClicked: boolean) => void;
-  isOpen: boolean;
-  loader: boolean;
 }
   
 export function ProductsList(props: ProductsListProps) {
-  const { products, selectProduct, deleteProduct, handleOpenModal, isOpen, loader} = props;
+  const { products, selectProduct, deleteProduct, handleOpenModal} = props;
   return (
     <>
       <Table>
@@ -33,15 +31,13 @@ export function ProductsList(props: ProductsListProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {props.products.map((product) => (
+          {products.map((product) => (
           <ProductItem 
             key={product.id} 
             produto={product} 
             deleteProduct={deleteProduct} 
             selectProduct={selectProduct} 
             handleOpenModal={handleOpenModal}
-            isOpen={isOpen}
-            loader={loader}
           />
           ))}
         </TableBody>

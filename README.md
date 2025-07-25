@@ -6,6 +6,26 @@ Criar uma aplicação web com **Next.js** e **TypeScript** que implemente um **C
 
 ---
 
+## 🛠️ Como executar localmente
+
+```bash
+# Clone este repositório
+git clone https://github.com/raquellandrade/dev-frontend-nextjs.git
+
+# Acesse a pasta do projeto
+cd dev-frontend-nextjs
+
+# Instale as dependências
+npm install
+
+# Execute a aplicação
+npm run dev
+```
+
+Acesse http://localhost:3000 no navegador para ver o app rodando.
+
+---
+
 ## 📦 API a ser utilizada
 
 Use os seguintes endpoints da FakeStore API:

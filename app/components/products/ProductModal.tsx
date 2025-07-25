@@ -47,7 +47,7 @@ export default function ProductModal(props: ProductModalProps) {
     }
   }, [product]);
 
-   function handleUploadImage(obj: any) {
+   function handleUploadImage(obj: Blob) {
     const blob = URL.createObjectURL(obj);
     setUrl(blob);
   }

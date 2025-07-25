@@ -21,8 +21,6 @@ const initialProduct = {
   const [productsList, setProductsList] = useState<Product[]>([]);
   const {processando, iniciarProcessamento, finalizarProcessamento} = useProcessando();
   const [isModalOpen, setIsOpenModal] = useState<boolean>(false);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [loader, setLoader] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<Product>(initialProduct);
 
   async function getProductsList() {
@@ -43,7 +41,6 @@ const initialProduct = {
       await deleteProduct(id);
       const filter = productsList.filter((product) => product.id !== id);
       setProducts(filter);
-      setIsOpen(false);
     } catch (error) {
       console.error("Error", error);
     }
@@ -136,8 +133,6 @@ const initialProduct = {
                     deleteProduct={deleteProductData}
                     selectProduct={selectProduct} 
                     handleOpenModal={handleOpenModal}
-                    isOpen={isOpen}
-                    loader={loader}
                 />
                 <ProductModal 
                     product={selectedProduct} 

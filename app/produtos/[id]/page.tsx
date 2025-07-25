@@ -7,6 +7,7 @@ import Product from "@/app/model/Product";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import useProcessando from "@/app/data/hooks/useProcessando";
 import LoadingMessage from "@/app/components/base/LoadingMessage";
+import Link from "next/link";
 
 export default function ProductPage() {
     const {iniciarProcessamento, finalizarProcessamento} = useProcessando();
@@ -49,7 +50,7 @@ export default function ProductPage() {
 
     useEffect(() => {
         loadProducts();
-    }, [id]);
+    }, [id, loadProducts()]);
 
     return (
         <>
@@ -59,7 +60,7 @@ export default function ProductPage() {
                         Produtos
                     </h1>
                     <div className="flex items-center shrink-0">
-                        <a href="/produtos" className={`
+                        <Link href="/produtos" className={`
                             flex cursor-pointer shrink-0 px-3 py-2 lg:mr-6 text-sm font-bold items-center
                             text-center border border-[#333] bg-transparent hover:bg-gray-50 text-[#333] rounded
                             `}>
@@ -67,7 +68,7 @@ export default function ProductPage() {
                                 className="text-[#333] font-bold h-5 w-5"
                                 aria-hidden="true"/>
                             <span className="lg:block hidden">Voltar </span>
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 {loader ? (

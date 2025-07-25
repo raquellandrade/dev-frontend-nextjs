@@ -1,8 +1,9 @@
 'use client'
-import { useState } from 'react'
-import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import Image from 'next/image'
+import { useState } from 'react';
+import { Dialog, DialogPanel } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -12,9 +13,9 @@ export default function Header() {
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="flex flex-1">
           <div className="hidden lg:flex lg:gap-x-12">
-            <a href="/produtos" className="text-sm/6 font-semibold text-gray-900">
+            <Link href="/produtos" className="text-sm/6 font-semibold text-gray-900">
                 Produtos
-            </a>
+            </Link>
           </div>
           <div className="flex lg:hidden">
             <button
@@ -27,14 +28,14 @@ export default function Header() {
             </button>
           </div>
         </div>
-        <a href="/" className="-m-1.5 p-1.5">
+        <Link href="/" className="-m-1.5 p-1.5">
           <span className="sr-only">Athena App</span>
           <Image className="h-[50px] w-auto" src="/logo-athena-app.png" alt="Logo" width={150} height={100} priority/>
-        </a>
+        </Link>
         <div className="flex flex-1 justify-end">
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
+          <Link href="#" className="text-sm/6 font-semibold text-gray-900">
             Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+          </Link>
         </div>
       </nav>
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
@@ -51,20 +52,20 @@ export default function Header() {
                 <XMarkIcon aria-hidden="true" className="size-6" />
               </button>
             </div>
-            <a href="/" className="-m-1.5 p-1.5">
+            <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Athena App</span>
               <Image className="h-[50px] w-auto" src="/logo-athena-app.png" alt="Logo" width={150} height={100}/>
-            </a>
+            </Link>
             <div className="flex flex-1 justify-end">
-              <a href="#" className="text-sm/6 font-semibold text-gray-900">
+              <Link href="#" className="text-sm/6 font-semibold text-gray-900">
                 Log in <span aria-hidden="true">&rarr;</span>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="mt-6 space-y-2">
-            <a href="/produtos" className="text-sm/6 font-semibold text-gray-900">
+            <Link href="/produtos" className="text-sm/6 font-semibold text-gray-900">
                 Produtos
-            </a>
+            </Link>
           </div>
         </DialogPanel>
       </Dialog>
