@@ -6,7 +6,7 @@ import Product from "@/app/model/Product";
 import useProcessando from "@/app/data/hooks/useProcessando";
 import ProductModal from "./ProductModal";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
-import Id from "@/app/model/id";
+import LoadingMessage from "../base/LoadingMessage";
 
 export default function ProductsListPage() {
 const initialProduct = {
@@ -22,7 +22,8 @@ const initialProduct = {
   const {processando, iniciarProcessamento, finalizarProcessamento} = useProcessando();
   const [isModalOpen, setIsOpenModal] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedProduct, setSelectedProduct] = useState<Partial<Product>>(initialProduct);
+  const [loader, setLoader] = useState<boolean>(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product>(initialProduct);
 
   async function getProductsList() {
     try {
@@ -78,7 +79,7 @@ const initialProduct = {
     setIsOpenModal(false);
   }
 
-  function selectProduct(product: Partial<Product>) {
+  function selectProduct(product: Product) {
     setSelectedProduct(product);
   }
 
@@ -104,52 +105,51 @@ const initialProduct = {
     loadProducts();
   }, []);
 
-
   return (
     <>
-        {isModalOpen ? 
-        <ProductModal 
-            product={selectedProduct} 
-            handleCloseModal={handleCloseModal} 
-            addNewProduct={addNewProduct} 
-            updateProductData={updateProductData}
-        /> : 
-            (processando ? (
-                <div>Carregando...</div>
-                ) : products.length > 0 ? (
-                    <>
-                        <div className="w-full flex justify-between mb-5">
-                            <h1 className="w-full lg:mb-4.5 scroll-m-20 text-left text-4xl font-extrabold tracking-tight text-balance">
-                                Produtos
-                            </h1>
-                            <button 
-                                onClick={() => {
-                                    selectProduct({id: Number(Id.newId())});
-                                    setIsOpenModal(true);
-                                }}
-                                className={`
-                                    flex cursor-pointer shrink-0 px-3 py-2 lg:mr-6 text-sm font-bold items-center
-                                    text-center text-white bg-green-700 rounded hover:bg-green-800 focus:ring-4 
-                                    focus:outline-none focus:ring-green-300 bg-green-600 hover:bg-green-700 focus:ring-green-800
-                                `}>
-                                <span className="lg:block hidden">Add Novo Produto </span> 
-                                <PlusCircleIcon 
-                                className="text-white font-bold h-5 w-5 ml-1"
-                                aria-hidden="true"/>
-                            </button>
-                        </div>
-                    
-                        <ProductsList 
-                            products={products} 
-                            deleteProduct={deleteProductData}
-                            selectProduct={selectProduct} 
-                            handleOpenModal={handleOpenModal}
-                        />
-                    </>
-                ) : (
-                    <div>Nenhum produto encontrado</div>
-            ) )
-        }
+      {processando || !products.length ? (
+          <LoadingMessage />
+          ) : products.length > 0 ? (
+              <>
+                <div className="w-full flex justify-between mb-5">
+                    <h1 className="w-full lg:mb-4.5 scroll-m-20 text-left text-4xl font-extrabold tracking-tight text-balance">
+                        Produtos
+                    </h1>
+                    <button 
+                        onClick={() => {
+                            setIsOpenModal(true);
+                        }}
+                        className={`
+                            flex cursor-pointer shrink-0 px-3 py-2 lg:mr-6 text-sm font-bold items-center
+                            text-center text-white bg-green-700 rounded hover:bg-green-800 focus:ring-4 
+                            focus:outline-none focus:ring-green-300 bg-green-600 hover:bg-green-700 focus:ring-green-800
+                        `}>
+                        <span className="lg:block hidden">Add Novo Produto </span> 
+                        <PlusCircleIcon 
+                        className="text-white font-bold h-5 w-5 ml-1"
+                        aria-hidden="true"/>
+                    </button>
+                </div>
+              
+                <ProductsList 
+                    products={products} 
+                    deleteProduct={deleteProductData}
+                    selectProduct={selectProduct} 
+                    handleOpenModal={handleOpenModal}
+                    isOpen={isOpen}
+                    loader={loader}
+                />
+                <ProductModal 
+                    product={selectedProduct} 
+                    isModalOpen={isModalOpen}
+                    handleCloseModal={handleCloseModal} 
+                    addNewProduct={addNewProduct} 
+                    updateProductData={updateProductData}
+                />
+              </>
+          ) : (
+              <div>Nenhum produto encontrado</div>
+        )}
     </>
   );
 }

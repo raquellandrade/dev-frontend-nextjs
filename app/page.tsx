@@ -1,9 +1,4 @@
-"use client"
-import Header from "./components/base/Header";
-import Footer from "./components/base/Footer";
 import ProductsListPage from "./components/products/ProductsListPage";
-import { PlusCircleIcon } from "@heroicons/react/24/outline";
-
 
 export default function Home() {
   return (

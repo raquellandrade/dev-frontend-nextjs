@@ -1,5 +1,3 @@
-"use client"
-import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import ProductsListPage from "@/app/components/products/ProductsListPage";
 
 export default function Produtos() {

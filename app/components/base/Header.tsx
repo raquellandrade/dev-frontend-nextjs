@@ -1,10 +1,8 @@
 'use client'
-
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
-
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -14,7 +12,7 @@ export default function Header() {
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="flex flex-1">
           <div className="hidden lg:flex lg:gap-x-12">
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">
+            <a href="/produtos" className="text-sm/6 font-semibold text-gray-900">
                 Produtos
             </a>
           </div>
@@ -29,7 +27,7 @@ export default function Header() {
             </button>
           </div>
         </div>
-        <a href="#" className="-m-1.5 p-1.5">
+        <a href="/" className="-m-1.5 p-1.5">
           <span className="sr-only">Athena App</span>
           <Image className="h-[50px] w-auto" src="/logo-athena-app.png" alt="Logo" width={150} height={100} priority/>
         </a>
@@ -53,7 +51,7 @@ export default function Header() {
                 <XMarkIcon aria-hidden="true" className="size-6" />
               </button>
             </div>
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Athena App</span>
               <Image className="h-[50px] w-auto" src="/logo-athena-app.png" alt="Logo" width={150} height={100}/>
             </a>
@@ -64,7 +62,7 @@ export default function Header() {
             </div>
           </div>
           <div className="mt-6 space-y-2">
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">
+            <a href="/produtos" className="text-sm/6 font-semibold text-gray-900">
                 Produtos
             </a>
           </div>
