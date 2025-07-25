@@ -10,10 +10,15 @@ import Moeda from "@/app/utils/moeda";
 
 interface ProductItemProps {
     produto: Product;
+    selectProduct: (product: Product) => void;
+    deleteProduct: (id: number) => void;
+    handleOpenModal: (editButtonClicked: boolean) => void;
 }
 
 export default function ProductItem(props: ProductItemProps) {
     const { produto } = props;
+    const editButtonClicked = true;
+
     return (
         <TableRow>
         <TableCell className="font-medium">{produto.id}</TableCell>
@@ -36,7 +41,13 @@ export default function ProductItem(props: ProductItemProps) {
                   aria-hidden="true"
                 />
           </a>
-          <div className={`
+          <button 
+            onClick={() => {
+              props.handleOpenModal(editButtonClicked);
+              props.selectProduct(produto);
+              
+            }}
+            className={`
               inline-flex cursor-pointer mr-2 items-center px-3 py-2 
               text-sm font-medium text-center text-white bg-blue-700 
               rounded hover:bg-blue-800 focus:ring-4 focus:outline-none 
@@ -47,18 +58,21 @@ export default function ProductItem(props: ProductItemProps) {
                   className="text-white font-bold h-4 w-4 ml-1"
                   aria-hidden="true"
                 />
-          </div>
-          <div className={`
+          </button>
+          <button 
+          className={`
           inline-flex cursor-pointer items-center px-3 py-2 text-sm font-medium 
           text-center text-white bg-red-700 rounded hover:bg-red-800 focus:ring-4 
           focus:outline-none focus:ring-red-300 bg-red-600 hover:bg-red-700 focus:ring-red-800
-              `}>
+              `}
+              onClick={() => props.deleteProduct(produto.id)}
+          >
               Excluir
               <TrashIcon
                     className="text-white font-bold h-4 w-4 ml-1"
                     aria-hidden="true"
                  />
-          </div>
+          </button>
 
         </TableCell>
       </TableRow>

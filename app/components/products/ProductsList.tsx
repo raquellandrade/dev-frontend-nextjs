@@ -1,4 +1,4 @@
-"use client"
+
 import {
     Table,
     TableBody,
@@ -8,10 +8,12 @@ import {
   } from "@/components/ui/table";
 import Product from "@/app/model/Product";
 import ProductItem from "./ProductItem";
-import ProductModal from "./ProductModal";
 
   interface ProductsListProps {
     products: Product[];
+    selectProduct: (product: Product) => void;
+    deleteProduct: (id: number) => void;
+    handleOpenModal: (editButtonClicked: boolean) => void;
   }
   
   export function ProductsList(props: ProductsListProps) {
@@ -30,11 +32,16 @@ import ProductModal from "./ProductModal";
           </TableHeader>
           <TableBody>
             {props.products.map((product) => (
-            <ProductItem key={product.id} produto={product} />
+            <ProductItem 
+              key={product.id} 
+              produto={product} 
+              deleteProduct={props.deleteProduct} 
+              selectProduct={props.selectProduct} 
+              handleOpenModal={props.handleOpenModal}
+            />
             ))}
           </TableBody>
         </Table>
-        <ProductModal />
       </>
       
     )
