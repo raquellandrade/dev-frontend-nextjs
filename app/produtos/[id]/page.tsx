@@ -49,7 +49,7 @@ export default function ProductPage() {
 
     useEffect(() => {
         loadProducts();
-    }, [id, loadProducts()]);
+    }, [id]);
 
     return (
         <>
