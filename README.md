@@ -26,6 +26,12 @@ Acesse http://localhost:3000 no navegador para ver o app rodando.
 
 ---
 
+## 🚀 Veja a aplicação rodando na web
+
+Acesse https://athena-app-bice.vercel.app/ 
+
+---
+
 ## 📦 API a ser utilizada
 
 Use os seguintes endpoints da FakeStore API:

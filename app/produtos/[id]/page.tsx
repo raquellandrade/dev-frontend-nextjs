@@ -29,7 +29,6 @@ export default function ProductPage() {
             const response = await getProduct(id);
             if (response.data) {
                 setProduct(response.data);
-                console.log('produto ', response.data)
             }
 
         } catch (error) {
